@@ -3,11 +3,130 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="src/style/style.css">
+    <title>Todo App</title>
+    <script src="https://kit.fontawesome.com/12c969ea13.js" crossorigin="anonymous"></script>
 </head>
 <body>
-    <div class="root"></div>
-    <script src="src/index.js"></script>
+    <aside class="task-panel">
+        <section class="task-panel__task-quick-access">
+            <div class="task-panel__task-quick-access--inner task-panel__task-quick-access--active">
+                <i class="fa-solid fa-star"></i>
+                <p>Today</p>
+            </div>
+            <div class="task-panel__task-quick-access--inner">
+                <i class="fa-solid fa-arrow-right"></i>
+                <p>Tomorrow</p>
+            </div>
+            <div class="task-panel__task-quick-access--inner">
+                <i class="fa-solid fa-calendar-week"></i>
+                <p>On week</p>
+            </div>
+            <div class="task-panel__task-quick-access--inner">
+                <i class="fa-solid fa-box-archive"></i>
+                <p>No due date</p>
+            </div>
+            <div></div>
+        </section>
+
+        <section class="task-panel__list-storage">
+            <div class="task-panel__list-storage-inner">
+                <div class="task-panel__list-storage list">
+                    <span class="project-title project-title--active">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h4>List title</h4>
+                    </span>
+                    <div class="tasks">
+                        <p class="task">Title 1</p>
+                        <p class="task">Title 2</p>
+                        <p class="task">Title 3</p>
+                    </div>
+                </div>
+                <div class=" task-panel__list-storage list">
+                    <span class="project-title">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h4>List title</h4>
+                    </span>
+                    <div class="tasks">
+                        <p class="task">Title 1</p>
+                        <p class="task">Title 2</p>
+                        <p class="task">Title 3</p>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="task-panel__add-task">
+
+            <div class="task-panel__add-task--inner">
+                <div>
+                    <i class="fa-solid fa-plus"></i>
+                    <p>New list</p>
+                </div>
+                <i class="fa-solid fa-ellipsis"></i>
+            </div>
+        </section>
+    </aside>
+
+    <main class="task-board">
+        <div class="task-board__inner">
+            <div class="task-board__title-wrapper">
+                <span class="task-board__list-title">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <h2>List title</h2>
+                </span>
+                <p class="task-board__description">A new description for the title of a new list</p>
+            </div>
+
+            <div class="task-board task-list">
+                <div class="task-board task-list-wrapper">
+                    <div class="task-board task-list-wrapper task-title">
+                        <h3>Title 1</h3>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </div>
+    
+                    <div class="task-board task-list-wrapper__radio-wrapper">
+                        <div class="task-board task-list-wrapper__task-element">
+                            <span class="task-board task-list-wrapper task">
+                                <input type="checkbox" name="checkbox_1" id="checkbox_1">
+                                <label for="checkbox_1">Title 1</label>
+                                <small>Description</small>
+                            </span>
+                            <span class="task-board task-list-wrapper task__subtask">
+                                <input type="checkbox" name="sub_checkbox_1" id="sub_checkbox_1">
+                                <label for="sub_checkbox_1">Subtitle 1</label>
+                                <small>Description</small>
+                            </span>
+                            <span class="task-board task-list-wrapper task__subtask">
+                                <input type="checkbox" name="sub_checkbox_2" id="sub_checkbox_2">
+                                <label for="sub_checkbox_2">Subtitle 2</label>
+                                <small>Description</small>
+                            </span>
+                            <span class="task-board task-list-wrapper task__subtask">
+                                <input type="checkbox" name="sub_checkbox_3" id="sub_checkbox_3">
+                                <label for="sub_checkbox_3">Subtitle 3</label>
+                            </span>
+                        </div>
+
+                        <div class="task-board task-list-wrapper__task-element">
+                            <span class="task-board task-list-wrapper task">
+                                <input type="checkbox" name="checkbox_2" id="checkbox_2">
+                                <label for="checkbox_2">Title 2</label>
+                            </span>
+                            <span class="task-board task-list-wrapper task__subtask">
+                                <input type="checkbox" name="sub_checkbox_4" id="sub_checkbox_4">
+                                <label for="sub_checkbox_4">Subtitle 1</label>
+                            </span>
+                            <span class="task-board task-list-wrapper task__subtask">
+                                <input type="checkbox" name="sub_checkbox_5" id="sub_checkbox_5">
+                                <label for="sub_checkbox_5">Subtitle 2</label>
+                            </span>
+                        </div>
+                    </div>
+                </div>  
+            </div>
+            
+        </div>
+    </main>
 </body>
 </html>
