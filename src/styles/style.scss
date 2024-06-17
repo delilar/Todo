@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+:root {
+    --side-nav-background: #F4F5F7;
+    --separator-border: #cfcfcf;
+    --active-color: #4285F4;
+    --main-text-color: #3B3C3F;
+}
+
+$task-panel-width: 25vw;
+$task-panel-height: 52px;
+$min-task-panel-width: 200px;
+
+
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+body {
+    overflow: hidden;
+    height: 100svh;
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--main-text-color);
+}
+
+.task-panel {
+    height: 100svh;
+    width: #{$task-panel-width};
+    min-width: #{$min-task-panel-width};
+    background-color: var(--side-nav-background);
+
+    &__add-task {
+        z-index: 1;
+        position: absolute;
+        bottom: 0;
+        padding: 0 1rem;
+        border-top: 1px var(--separator-border) solid;
+        width: #{$task-panel-width};
+        min-width: #{$min-task-panel-width};
+
+        &--inner {
+            display: flex;
+            height: #{$task-panel-height};
+            align-items: center;
+            justify-content: space-between;
+
+            div {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        .fa-solid.fa-plus {
+            margin-right: 0.5rem;
+            color: var(--active-color);
+        }
+    
+        p {
+            font-weight: 450;
+        }
+    }
+
+
+    &__task-quick-access {
+        z-index: 1;
+        padding: 0.5rem 1rem;
+        border-bottom: 1px var(--separator-border) solid;
+
+        &--inner {
+            display: flex;
+            align-items: center;
+            height: 2rem;
+            font-size: 1rem;
+
+            i {
+                margin-right: 0.5rem;
+            }
+        }
+
+        &--active i {
+            color: var(--active-color);
+        }
+    }
+} 
+
+.task-board {
+    height: 100svh;
+    min-width: 500px;
+    background-color: #fff;
+    
+}
