@@ -1,0 +1,42 @@
+.menu-list {
+    display: none;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 1rem 0.7rem;
+    border-radius: 0.5rem;
+    min-width: 150px;
+    color: var(--main-text-color);
+    box-shadow: 1px 1px 3px var(--main-shadow-color), -1px -1px 3px var(--main-shadow-color);
+    transition: 0.3s ease;
+
+    &__element {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        
+        i {
+            padding-right: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        p {
+            transition: 0.3s ease;
+        }
+    }
+
+    &__element {
+        padding-bottom: 0.5rem;
+    }
+
+    &__element:last-child {
+        padding-bottom: 0;
+    }
+
+    &__element:hover {
+        p {
+            font-weight: 500;
+        }
+    }
+}
