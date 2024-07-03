@@ -1,0 +1,82 @@
+.task-panel {
+    &__list-storage {
+        &.add-list {
+            display: none;
+
+            span {
+                display: flex;
+                flex-direction: column;
+                align-items: start;
+                justify-content: center;
+                font-size: 0.8rem;
+                font-weight: 600;
+                margin-top: 0.7rem;
+            }
+
+            span {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: start;
+            }
+
+            input[type="text"] {
+                width: 90%;
+                border: none;
+                background-color: var(--side-nav-background-input);
+                border-bottom: var(--separator-border) 1px solid;
+                font-size: 0.9rem;
+                margin-bottom: 0.4rem;
+                padding: 0 0.2rem;
+                outline: none;
+            }  
+
+            .add-list__modificators {
+                display: flex;
+                justify-content: space-between;
+
+                .dropdown-add-task, .dropdown-create-list {
+                    transition: 0.3s ease;
+                    justify-content: center;
+                    cursor: pointer;
+                    background-color: var(--hover-darker);
+                    width: auto;
+                    padding: 0.5rem;
+                    border-radius: 15px;
+
+                    i {
+                        padding-right: 0.3rem;
+                    }
+
+                    
+                }
+
+                .dropdown-add-task {
+                    margin-right: 1rem;
+
+                    i {
+                        transition: 0.3s ease;
+                    }
+
+                    &:hover {
+                        i {
+                            color: var(--active-color-text);
+                        }
+                    }
+                }
+
+                .dropdown-create-list {
+                    margin-right: 2rem;
+
+                    &:hover {
+                        background-color: var(--active-color-lighten);
+                        color: #fff;
+                    }
+                }
+
+            }
+        }
+
+    }
+
+}

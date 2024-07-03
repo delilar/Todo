@@ -4,8 +4,8 @@ import values from './json/values.json'
 import { menuOptions, menu } from './UI/panelMenuList/panelMenuList.js';
 //import {projectTitles, tasks} from './listStorageChoise.js';
 import { taskSotingPannel, taskSotingElements } from "./UI/sortingMethods/sortingMethods.js"
-import { dropdownElements, dropdownButton, dropdownContent} from './UI/chooseTag/chooseTag.js';
-
+import { popupMenu, dropdownButton, dropdownContent, dropdownElements, dropdownDate, taskCheckbox, tasks } from './UI/TaskSettings/TaskSettings.js';
+import { listStorageAddList, addTaskButton, newListButton, addListPanel, addTaskInput, addListName, createListButton } from './UI/createNewList/createNewList.js';
 
 // HTML-шаблон для меню
 const menuHTML = `<div class="menu-list">
@@ -93,12 +93,66 @@ taskSotingElements.forEach((sortingElement) => {
 })
 
 
+// Event listener to toggle popup menu
+const ellipsisIcon = document.querySelectorAll('.task-board.task-list-wrapper.task-title .fa-ellipsis');
+ellipsisIcon.forEach(icon => {
+    icon.addEventListener('click', (event) => {
+        const rect2 = event.target.getBoundingClientRect();
+        popupMenu.style.top = `${rect2.top}px`;
+        popupMenu.style.left = `${rect2.left - 180}px`;
+        popupMenu.style.display = 'block';
+
+        dropdownButton.textContent = 'None';
+        dropdownDate.value = '';
+    });
+});
+
+// Close the popup when clicking outside
+document.addEventListener('click', (event) => {
+    if (!popupMenu.contains(event.target) && !event.target.matches('.fa-ellipsis')) {
+        popupMenu.style.display = 'none';
+    }
+});
+
 //Dropdown стилизация и обработка
 
 dropdownElements.forEach(elem => {
     elem.addEventListener('click', () => {
         dropdownButton.textContent = elem.getAttribute('data-value')
+        console.log(dropdownButton.textContent)
     })
-    console.log(elem.getAttribute('data-value'), dropdownButton.textContent)
-
 })
+
+dropdownDate.addEventListener('change', (event) => {
+    console.log(event.target.value)
+})
+
+
+newListButton.addEventListener('click', () => {
+    listStorageAddList.style.display = 'block';
+})
+
+addTaskButton.addEventListener('click', () => {
+    addListPanel.querySelector('.tasks').innerHTML += addTaskInput;
+})
+
+createListButton.addEventListener('click', () => {
+    listStorageAddList.style.display = 'none';
+})
+
+
+
+//Обработка клика по checkbox
+
+tasks.forEach((task, index) => {
+    taskCheckbox[index].addEventListener('click', () => {
+        taskCheckbox[index].getElementsByTagName('i')[0].style.display = 'none'
+        taskCheckbox[index].getElementsByTagName('i')[1].style.display = 'block'
+        task.style.opacity = 0;
+
+        setTimeout(() => {
+            task.style.display = 'none'
+        }, '300')
+    })
+})
+

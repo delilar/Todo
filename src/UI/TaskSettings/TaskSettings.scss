@@ -1,0 +1,36 @@
+.add-list__popup {
+    transition: 0.3s ease;
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    box-shadow: 1px 1px 3px var(--main-shadow-color), -1px -1px 3px var(--main-shadow-color);
+    padding: 1rem;
+    border-radius: 15px;
+
+    .dropdown-add-date {
+
+        input[type="date"] {
+            outline: none;
+            border: none;
+            padding: 0.5rem;
+            background-color: var(--active-color-lighten);
+            border-radius: 5px;
+            color: #fff;
+            margin-bottom: 1rem;
+        }
+        
+        input[type="date"]::-webkit-calendar-picker-indicator {
+            background-color: #fff;
+            border-radius: 3px;
+        }
+    }
+
+    .dropdown-tag {
+            margin-bottom: 0.3rem;
+            margin-left: 0.5rem;
+    }
+
+    .dropdown-submit {
+        background-color: black;
+    }
+}

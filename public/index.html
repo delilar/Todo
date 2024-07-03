@@ -63,26 +63,7 @@
                 </div>
 
                 <div class="task-panel__list-storage add-list">
-                    <div class="add-project-title">
-                        <input type="text" autocomplete="off" name="project-title" id="add-project-title" placeholder="Enter the list name">
-                    </div>
-                    <div class="tasks">
-                        <input  type="text" autocomplete="off" name="task" id="task-in-list" placeholder="Enter the task name"></input>
-                    </div>
-                    <div class="add-list__modificators">
-                        <span class="dropdown-add-task">
-                            <i class="fa-solid fa-plus"></i>
-                            <p>Add task</p>
-                        </span>
-                        <span class="dropdown-add-date">
-                            <p class="dropdown-tag">Add date</p>
-                            <input type="date" name="" id="">
-                        </span>
-                        <span class="dropdown-wrapper">
-                            <p class="dropdown-tag">Add tag</p>
-                            
-                        </span>
-                    </div>
+                    
 
                 </div>
                 
@@ -119,53 +100,53 @@
                 <p class="task-board__description">A new description for the title of a new list</p>
             </div>
 
-            <!--list task-->
+            <!--task in list-->
             <div class="task-board task-list">
-                <div class="task-board task-list-wrapper">
-                    <div class="task-board task-list-wrapper task-title">
+                <div class="task-board task-list-wrapper task-title">
+                    <div class="task-board task-list__checkbox-wrapper">
+                        <div class="task-board task-list__checkbox">
+                            <i class="fa-regular fa-circle"></i>
+                            <i class="fa-solid fa-check"></i>
+                        </div>
                         <h3>Title 1</h3>
-                        <i class="fa-solid fa-ellipsis"></i>
                     </div>
-    
-                    <div class="task-board task-list-wrapper__radio-wrapper">
-                        <div class="task-board task-list-wrapper__task-element">
-                            <span class="task-board task-list-wrapper task">
-                                <input type="checkbox" name="checkbox_1" id="checkbox_1">
-                                <label for="checkbox_1">Title 1</label>
-                                <small>Description</small>
-                            </span>
-                            <span class="task-board task-list-wrapper task__subtask">
-                                <input type="checkbox" name="sub_checkbox_1" id="sub_checkbox_1">
-                                <label for="sub_checkbox_1">Subtitle 1</label>
-                                <small>Description</small>
-                            </span>
-                            <span class="task-board task-list-wrapper task__subtask">
-                                <input type="checkbox" name="sub_checkbox_2" id="sub_checkbox_2">
-                                <label for="sub_checkbox_2">Subtitle 2</label>
-                                <small>Description</small>
-                            </span>
-                            <span class="task-board task-list-wrapper task__subtask">
-                                <input type="checkbox" name="sub_checkbox_3" id="sub_checkbox_3">
-                                <label for="sub_checkbox_3">Subtitle 3</label>
-                            </span>
-                        </div>
+                    <i class="fa-solid fa-ellipsis"></i>
 
-                        <div class="task-board task-list-wrapper__task-element">
-                            <span class="task-board task-list-wrapper task">
-                                <input type="checkbox" name="checkbox_2" id="checkbox_2">
-                                <label for="checkbox_2">Title 2</label>
-                            </span>
-                            <span class="task-board task-list-wrapper task__subtask">
-                                <input type="checkbox" name="sub_checkbox_4" id="sub_checkbox_4">
-                                <label for="sub_checkbox_4">Subtitle 1</label>
-                            </span>
-                            <span class="task-board task-list-wrapper task__subtask">
-                                <input type="checkbox" name="sub_checkbox_5" id="sub_checkbox_5">
-                                <label for="sub_checkbox_5">Subtitle 2</label>
-                            </span>
-                        </div>
+                    <div class="add-list__popup">
+                        <span class="dropdown-add-date">
+                            <p class="dropdown-tag">Add date</p>
+                            <input type="date" name="dropdown-date" id="dropdown-date">
+                        </span>
+                        <span class="dropdown-wrapper">
+                            <p class="dropdown-tag">Add priority</p>
+                            
+                        </span>
                     </div>
-                </div>  
+                </div>
+
+                <div class="task-board task-list-wrapper task-title">
+                    <div class="task-board task-list__checkbox-wrapper">
+                        <div class="task-board task-list__checkbox">
+                            <i class="fa-regular fa-circle"></i>
+                            <i class="fa-solid fa-check"></i>
+                        </div>
+                        <h3>Title 1</h3>
+                    </div>
+                    <i class="fa-solid fa-ellipsis"></i>
+
+                    <div class="add-list__popup">
+                        <span class="dropdown-add-date">
+                            <p class="dropdown-tag">Add date</p>
+                            <input type="date" name="dropdown-date" id="dropdown-date">
+                        </span>
+                        <span class="dropdown-wrapper">
+                            <p class="dropdown-tag">Add priority</p>
+                            
+                        </span>
+                    </div>
+                </div>
+                
+    
             </div>
 
         

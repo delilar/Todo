@@ -31,6 +31,10 @@ body {
     font-family: 'Montserrat', sans-serif;
     color: var(--main-text-color);
     display: flex;
+
+    .fa-solid.fa-ellipsis {
+        cursor: pointer;
+    }
 }
 
 .task-panel {
@@ -172,8 +176,9 @@ body {
                 font-size: 1.1rem;
             }
         }
-        
+
         &.add-list {
+            transition: 0.3s ease;
             width: #{$task-panel-width};
             min-width: #{$min-task-panel-width};
             padding: 1rem 0.5rem;
@@ -182,80 +187,7 @@ body {
             background-color: var(--side-nav-background-input);
             border-radius: 10px;
 
-            span {
-                display: flex;
-                flex-direction: column;
-                align-items: start;
-                justify-content: center;
-                font-size: 0.8rem;
-                font-weight: 600;
-                margin-top: 0.7rem;
-            }
-
-            span:first-child {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: start;
-            }
-
-            input[type="text"] {
-                width: 90%;
-                border: none;
-                background-color: var(--side-nav-background-input);
-                border-bottom: var(--separator-border) 1px solid;
-                font-size: 0.9rem;
-                margin-bottom: 0.4rem;
-                padding: 0 0.2rem;
-                outline: none;
-            }  
-        
-            .add-list__modificators {
-                .dropdown-add-task {
-                    justify-content: center;
-                    cursor: pointer;
-                    background-color: var(--hover-darker);
-                    width: auto;
-                    padding: 0.5rem;
-                    width: 100px;
-                    border-radius: 15px;
-
-                    i {
-                        transition: 0.3s ease;
-                        padding-right: 0.3rem;
-                    }
-    
-                    &:hover {
-                        i {
-                            color: var(--active-color-text);
-                        }
-                    }
-                }
-
-                .dropdown-add-date {
-
-                    input[type="date"] {
-                        outline: none;
-                        border: none;
-                        padding: 0.5rem;
-                        background-color: var(--active-color-lighten);
-                        border-radius: 5px;
-                        color: #fff;
-                    }
-                    
-                    input[type="date"]::-webkit-calendar-picker-indicator {
-                        background-color: #fff;
-                        border-radius: 3px;
-                    }
-                }
-
-                .dropdown-tag {
-                        margin-bottom: 0.3rem;
-                        margin-left: 0.5rem;
-                }
-            }
-        }
-          
+        }  
     }
 } 
 
@@ -318,15 +250,37 @@ $min-task-board-width: 200px;
     &.task-list {
         margin-bottom: 1.5rem;
 
+        &__checkbox {
+            cursor: pointer;
+            margin-right: 0.5rem;
+
+            .fa-circle {
+                font-size: 0.9rem;
+            }
+
+            .fa-check {
+                display: none;
+            }
+
+            &-wrapper {
+                display: flex;
+                align-items: center;
+            } 
+
+
+        }  
+
         &-wrapper {
 
             &.task-title {
+                opacity: 1;
+                transition: opacity 0.3s ease;
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
                 padding: 0 0.5rem 0.7rem 0.5rem;
                 border-bottom: 1px var(--separator-border) solid;
-                color: var(--active-color-text);
+                margin-bottom: 1rem;
             }
 
             &__task-element {

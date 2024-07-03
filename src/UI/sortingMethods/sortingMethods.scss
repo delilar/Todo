@@ -19,15 +19,16 @@ $min-task-panel-width: 200px;
             align-items: center;
             height: 2rem;
             font-size: 1rem;
+            transition: 0.3s ease;
 
             i {
                 margin-right: 0.5rem;
-                transition: 0.3s ease;
             }
 
             &.active {
                 padding: 0;
                 border-bottom: none;
+                font-weight: 550;
     
                 i {
                     color: var(--active-color-lighten);
