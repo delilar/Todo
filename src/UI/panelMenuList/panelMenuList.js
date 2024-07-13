@@ -1,10 +1,22 @@
 import './panelMenuList.scss'
 
+
 // Получаем элементы меню
-const menuOptions = document.querySelectorAll(".menu-list-options");
+let menuOptions = document.querySelectorAll(".menu-list-options");
 
 // HTML-шаблон для меню
 const menuHTML = `<div class="menu-list">
+                    <div class="menu-list__element">
+                        <i class="fa-solid fa-pen"></i>
+                        <p>Edit list</p>
+                    </div>
+                    <div class="menu-list__element">
+                        <i class="fa-solid fa-trash"></i>
+                        <p>Delete</p>
+                    </div>
+                  </div>`
+
+/* `<div class="menu-list">
                     <div class="menu-list__element">
                         <i class="fa-solid fa-pen"></i>
                         <p>Edit list</p>
@@ -17,7 +29,8 @@ const menuHTML = `<div class="menu-list">
                         <i class="fa-solid fa-trash"></i>
                         <p>Delete</p>
                     </div>
-                  </div>`;
+                  </div>`
+                  */;
 
 // Вставляем HTML-шаблон в тело документа
 document.body.insertAdjacentHTML('beforeend', menuHTML);

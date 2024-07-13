@@ -10,6 +10,10 @@
     --hover-darker: #d3d5d7;
     --main-shadow-color: #3b3c3f60;
     --side-nav-background-input: #e8e8f0;
+
+    --priority-high: #eb2f35;
+    --priority-medium: #eb9d2f;
+    --priority-low: #2feb55;
 }
 
 $task-panel-width: 25vw;
@@ -243,12 +247,18 @@ $min-task-board-width: 200px;
     &__title-wrapper {
         padding-left: 0.5rem;
         padding-bottom: 3rem;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
     }
 
 
 
     &.task-list {
         margin-bottom: 1.5rem;
+        position: relative;
 
         &__checkbox {
             cursor: pointer;
@@ -281,6 +291,8 @@ $min-task-board-width: 200px;
                 padding: 0 0.5rem 0.7rem 0.5rem;
                 border-bottom: 1px var(--separator-border) solid;
                 margin-bottom: 1rem;
+
+                
             }
 
             &__task-element {

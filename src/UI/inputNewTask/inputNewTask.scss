@@ -1,0 +1,89 @@
+.task-board {
+
+    &__title-wrapper {
+        .add-task-button {
+            cursor: pointer;
+            transition: 0.3s ease;
+            
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 90px;
+            
+            padding: 0.7rem 1rem;
+            border-radius: 50px;
+
+            i {
+                transition: 0.3s ease;
+                
+            }
+
+            p {
+                font-weight: 550;
+            }
+
+            &:hover {
+
+                i {
+                    color: var(--active-color-text);
+                }
+            }
+        }
+    }
+
+    &.task-list {
+        &-wrapper {
+            &.task-title {
+
+                add-task {
+                    transition: opacity 0.3s ease;
+                }
+
+                input[type="text"] {
+                    width: 30vw;
+                    min-width: 300px;
+
+                    border: none;
+
+                    font-size: 1.17rem;
+                    font-weight: bold;
+
+                    padding: 0.5rem;
+                    border-radius: 0.5rem;
+                    margin-left: 1.25rem;
+
+                    outline: none;
+                    transition: 0.3s ease;
+                }  
+
+                input[type="text"]:focus {
+                    background-color: var(--side-nav-background-input);
+                }
+
+                .task-add-done-button {
+                    display: flex;
+                    align-items: center;
+
+                    transition: 0.3s ease;
+                    justify-content: center;
+                    cursor: pointer;
+                    background-color: var(--hover-darker);
+                    width: auto;
+                    padding: 0.5rem;
+                    border-radius: 15px;
+
+                    i {
+                        padding-right: 0.3rem;
+                    }
+
+                    margin-right: 2rem;
+
+                    &:hover {
+                        background-color: var(--active-color-lighten);
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}

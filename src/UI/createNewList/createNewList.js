@@ -20,17 +20,41 @@ const addNewList = `<div class="add-project-title">
 const listStorageAddList = document.querySelector('.task-panel__list-storage.add-list');
 listStorageAddList.innerHTML = addNewList;
 
-const newListButton = document.querySelector('.add-list-button')
+const newListButton = document.querySelector('.add-list-button');
 const addListPanel = document.querySelector('.task-panel__list-storage.add-list');
 
-const addTaskInput = `<input  type="text" autocomplete="off" name="task" id="task-in-list" placeholder="Enter the task name"></input>`;
-addListPanel.querySelector('.tasks').innerHTML += addTaskInput;
+const createTaskInput = () => {
+    const input = document.createElement('input');
+    input.type = 'text';
+    input.autocomplete = 'off';
+    input.name = 'task';
+    input.id = 'task-in-list';
+    input.placeholder = 'Enter the task name';
+    return input;
+}
 
 const addTaskButton = addListPanel.querySelector('.dropdown-add-task');
 const addListName = addListPanel.querySelector('#add-project-title');
+let addTaskName = Array.from(addListPanel.querySelectorAll('#task-in-list'));
 
 const createListButton = addListPanel.querySelector('.dropdown-create-list');
 
+newListButton.addEventListener('click', () => {
+    listStorageAddList.style.display = 'block';
+    const tasksDiv = addListPanel.querySelector('.tasks');
+    tasksDiv.innerHTML = '';
+    tasksDiv.appendChild(createTaskInput());
 
+    addTaskName = Array.from(addListPanel.querySelectorAll('#task-in-list'));
+})
 
-export { listStorageAddList, addTaskButton, newListButton, addListPanel, addTaskInput, addListName, createListButton }
+addTaskButton.addEventListener('click', () => {
+    addListPanel.querySelector('.tasks').appendChild(createTaskInput());
+    addTaskName = Array.from(addListPanel.querySelectorAll('#task-in-list')); 
+})
+
+createListButton.addEventListener('click', () => {
+    listStorageAddList.style.display = 'none';
+})
+
+export { listStorageAddList, addTaskButton, newListButton, addListPanel, addListName, createListButton, addTaskName }

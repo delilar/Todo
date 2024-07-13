@@ -1,34 +1,30 @@
 import './styles/style.scss';
 import values from './json/values.json'
 
-import { menuOptions, menu } from './UI/panelMenuList/panelMenuList.js';
+import { menuOptions as initialMenuOptions, menu } from './UI/panelMenuList/panelMenuList.js';
 //import {projectTitles, tasks} from './listStorageChoise.js';
 import { taskSotingPannel, taskSotingElements } from "./UI/sortingMethods/sortingMethods.js"
-import { popupMenu, dropdownButton, dropdownContent, dropdownElements, dropdownDate, taskCheckbox, tasks } from './UI/TaskSettings/TaskSettings.js';
-import { listStorageAddList, addTaskButton, newListButton, addListPanel, addTaskInput, addListName, createListButton } from './UI/createNewList/createNewList.js';
+import { popupMenu, dropdownPriority, dropdownContent, dropdownElements, dropdownDate, taskCheckbox, tasks, settingsSubmit } from './UI/TaskSettings/TaskSettings.js';
+import * as createNewList from './UI/createNewList/createNewList.js';
+import { addTaskButton, doneTaskButton, addTaskElement } from './UI/inputNewTask/inputNewTask.js'
+import * as listStorageChoise from './Sidebar.js';
 
-// HTML-шаблон для меню
-const menuHTML = `<div class="menu-list">
-                    <div class="menu-list__element">
-                        <i class="fa-solid fa-pen"></i>
-                        <p>Edit list</p>
-                    </div>
-                    <div class="menu-list__element">
-                        <i class="fa-solid fa-trash"></i>
-                        <p>Delete</p>
-                    </div>
-                  </div>`;
+
+let menuOptions = initialMenuOptions;
 
 // Добавляем обработчики событий для элементов меню
-menuOptions.forEach(option => {
-    option.addEventListener("click", function(event) {
-        const rect = option.getBoundingClientRect();
-
-        menu.style.left = `${rect.right}px`;
-        menu.style.top = `${rect.top}px`;
-        menu.style.display = "block";
+function updateMenuOptions() {
+    menuOptions.forEach(option => {
+        option.addEventListener("click", function(event) {
+            const rect = option.getBoundingClientRect();
+            menu.style.left = `${rect.right}px`;
+            menu.style.top = `${rect.top}px`;
+            menu.style.display = "block";
+        });
     });
-});
+}
+
+updateMenuOptions();
 
 // Добавляем обработчик событий для закрытия меню при клике вне его области
 document.addEventListener("click", function(event) {
@@ -42,37 +38,35 @@ document.addEventListener("click", function(event) {
 
 const projectTitles = document.querySelectorAll('.project-title');
 
-projectTitles.forEach(projectTitle => {
-    const tasks = projectTitle.nextElementSibling.querySelectorAll('.task-in-list');
-    
-    // Обработчик для projectTitle
-    projectTitle.addEventListener('click', () => {
-        // Снять класс 'active' со всех projectTitles
-        projectTitles.forEach(pt => pt.classList.remove('active'));
-        // Снять класс 'active' со всех tasks
-        document.querySelectorAll('.task-in-list').forEach(task => task.classList.remove('active'));
-        // Добавить класс 'active' на кликнутый projectTitle
-        projectTitle.classList.add('active');
+// Функция для обновления обработчиков событий в sidebar
+function updateSidebar() {
+    const projectTitles = document.querySelectorAll('.project-title');
+    projectTitles.forEach(projectTitle => {
+        const tasks = projectTitle.nextElementSibling.querySelectorAll('.task-in-list');
+        
+        // Удаляем старые обработчики событий, если они есть
+        projectTitle.removeEventListener('click', handleProjectTitleClick);
+        
+        // Обработчик для projectTitle
+        projectTitle.addEventListener('click', handleProjectTitleClick);
     });
 
-    // Обработчики для tasks внутри projectTitle
-    tasks.forEach(task => {
-        task.addEventListener('click', (event) => {
-            // Остановить всплытие события, чтобы не вызвать клик на projectTitle
-            event.stopPropagation();
-            
-            // Снять класс 'active' со всех задач
-            document.querySelectorAll('.task-in-list').forEach(t => t.classList.remove('active'));
-            // Добавить класс 'active' на кликнутую задачу
-            task.classList.add('active');
-            
-            // Снять класс 'active' со всех projectTitles
-            projectTitles.forEach(pt => pt.classList.remove('active'));
-            // Добавить класс 'active' на соответствующий projectTitle
-            projectTitle.classList.add('active');
-        });
-    });
-});
+    menuOptions = document.querySelectorAll(".menu-list-options");
+    updateMenuOptions();
+}
+
+// Обработчик событий для projectTitle
+function handleProjectTitleClick(event) {
+    const projectTitles = document.querySelectorAll('.project-title');
+    
+    // Снять класс 'active' со всех projectTitles
+    projectTitles.forEach(pt => pt.classList.remove('active'));
+
+    // Добавить класс 'active' на кликнутый projectTitle
+    event.currentTarget.classList.add('active');
+}
+
+updateSidebar()
 
 
 
@@ -93,7 +87,7 @@ taskSotingElements.forEach((sortingElement) => {
 })
 
 
-// Event listener to toggle popup menu
+// Event listener to task popup menu
 const ellipsisIcon = document.querySelectorAll('.task-board.task-list-wrapper.task-title .fa-ellipsis');
 ellipsisIcon.forEach(icon => {
     icon.addEventListener('click', (event) => {
@@ -102,7 +96,7 @@ ellipsisIcon.forEach(icon => {
         popupMenu.style.left = `${rect2.left - 180}px`;
         popupMenu.style.display = 'block';
 
-        dropdownButton.textContent = 'None';
+        dropdownPriority.textContent = 'None';
         dropdownDate.value = '';
     });
 });
@@ -118,8 +112,8 @@ document.addEventListener('click', (event) => {
 
 dropdownElements.forEach(elem => {
     elem.addEventListener('click', () => {
-        dropdownButton.textContent = elem.getAttribute('data-value')
-        console.log(dropdownButton.textContent)
+        dropdownPriority.textContent = elem.getAttribute('data-value')
+        console.log(dropdownPriority.textContent)
     })
 })
 
@@ -128,24 +122,5 @@ dropdownDate.addEventListener('change', (event) => {
 })
 
 
-newListButton.addEventListener('click', () => {
-    listStorageAddList.style.display = 'block';
-})
-
-addTaskButton.addEventListener('click', () => {
-    addListPanel.querySelector('.tasks').innerHTML += addTaskInput;
-})
-
-createListButton.addEventListener('click', () => {
-    listStorageAddList.style.display = 'none';
-})
-
-
-
-
-        setTimeout(() => {
-            task.style.display = 'none'
-        }, '300')
-    })
-})
+export { updateSidebar, menuOptions }
 

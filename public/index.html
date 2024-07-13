@@ -23,14 +23,14 @@
                     <span class="project-title active">
                         <div>
                             <i class="fa-solid fa-layer-group"></i>
-                            <h4>List title</h4>
+                            <h4 id="list-side-title">List title</h4>
                         </div>
                         <i class="menu-list-options fa-solid fa-ellipsis"></i>
                     </span>
                     <div class="tasks">
-                        <p class="task-in-list">Title 1</p>
-                        <p class="task-in-list">Title 2</p>
-                        <p class="task-in-list">Title 3</p>
+                        <p id="list-side-task" class="task-in-list">Title 1</p>
+                        <p id="list-side-task" class="task-in-list">Title 2</p>
+                        <p id="list-side-task" class="task-in-list">Title 3</p>
                     </div>
                 </div>
 
@@ -92,12 +92,19 @@
         <div class="task-board__inner">
             <!--list of tasks-->
             <div class="task-board__title-wrapper">
-                <span class="task-board__list-title">
-                    <i class="fa-solid fa-layer-group"></i>
-                    <h2>List title</h2>
-                    <i class="fa-solid fa-ellipsis"></i>
-                </span>
-                <p class="task-board__description">A new description for the title of a new list</p>
+                <div>
+                    <span class="task-board__list-title">
+                        <i class="fa-solid fa-layer-group"></i>
+                        <h2>List title</h2>
+                        <i class="fa-solid fa-ellipsis"></i>
+                    </span>
+                    <p class="task-board__description">A new description for the title of a new list</p>
+                </div>
+
+                <div class="add-task-button">
+                    <i class="fa-solid fa-plus"></i>
+                    <p>Task</p>
+                </div>
             </div>
 
             <!--task in list-->
@@ -110,18 +117,13 @@
                         </div>
                         <h3>Title 1</h3>
                     </div>
+
+                    <div class="task-board task-list__markers-wrapper">
+                        
+                    </div>
+
                     <i class="fa-solid fa-ellipsis"></i>
 
-                    <div class="add-list__popup">
-                        <span class="dropdown-add-date">
-                            <p class="dropdown-tag">Add date</p>
-                            <input type="date" name="dropdown-date" id="dropdown-date">
-                        </span>
-                        <span class="dropdown-wrapper">
-                            <p class="dropdown-tag">Add priority</p>
-                            
-                        </span>
-                    </div>
                 </div>
 
                 <div class="task-board task-list-wrapper task-title">
@@ -132,8 +134,19 @@
                         </div>
                         <h3>Title 1</h3>
                     </div>
+
+                    <div class="task-board task-list__markers-wrapper">
+                        <div class="date-marker">
+                            <p>12.06.2024</p>
+                        </div>
+                        <div class="priority-marker">
+                            <p>High</p>
+                        </div>
+                    </div>
+
                     <i class="fa-solid fa-ellipsis"></i>
 
+                    <!-- Popup у кажого task
                     <div class="add-list__popup">
                         <span class="dropdown-add-date">
                             <p class="dropdown-tag">Add date</p>
@@ -141,12 +154,22 @@
                         </span>
                         <span class="dropdown-wrapper">
                             <p class="dropdown-tag">Add priority</p>
-                            
                         </span>
                     </div>
+                    -->
                 </div>
+
+                <!--Input for new task-->
+                <!--<div class="task-board task-list-wrapper task-title add-task">
+                    <div class="task-board task-list__checkbox-wrapper">
+                        <input type="text" autocomplete="off" name="task-input" id="task-input" placeholder="Input new task">
+                    </div>
+                    <span class="task-add-done-button">
+                        <i class="fa-solid fa-check"></i>
+                        <p>Done</p>
+                    </span>
+                </div>-->
                 
-    
             </div>
 
         

@@ -7,30 +7,79 @@
     padding: 1rem;
     border-radius: 15px;
 
-    .dropdown-add-date {
+    .dropdown {
 
-        input[type="date"] {
-            outline: none;
-            border: none;
-            padding: 0.5rem;
-            background-color: var(--active-color-lighten);
-            border-radius: 5px;
-            color: #fff;
-            margin-bottom: 1rem;
+        &-add-date {
+            input[type="date"] {
+                outline: none;
+                border: none;
+                padding: 0.5rem;
+                background-color: var(--active-color-lighten);
+                border-radius: 5px;
+                color: #fff;
+                margin-bottom: 1rem;
+            }
+            
+            input[type="date"]::-webkit-calendar-picker-indicator {
+                background-color: #fff;
+                border-radius: 3px;
+            }
         }
-        
-        input[type="date"]::-webkit-calendar-picker-indicator {
-            background-color: #fff;
-            border-radius: 3px;
-        }
-    }
 
-    .dropdown-tag {
+        &-tag {
             margin-bottom: 0.3rem;
             margin-left: 0.5rem;
-    }
+        }     
+        
+        &-submit {
+            button {
+                font-family: 'Montserrat', sans-serif;
+                color: var(--main-text-color);
+                font-size: 0.9rem;
+                font-weight: 550;
+                font-style: normal;
+                border: none;
+                background-color: var(--side-nav-background);
+                border-radius: 15px;
+                min-width: 120px;
+                padding: 0.5rem;
+                transition: 0.15s ease;
+                margin-top: 0.5rem;
+                cursor: pointer;
+            }
 
-    .dropdown-submit {
-        background-color: black;
+            button:hover {
+                color: #fff;
+                background-color: var(--active-color-lighten);
+            }
+        }
+    }
+}
+
+.task-board {
+    &.task-list {
+        &__markers-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: absolute;
+            right: 7rem;
+            width: 170px;
+        
+            div {
+                border: 2px solid;
+                border-radius: 50px;
+                padding: 0.2rem 0.5rem;
+            }
+        
+            p {
+                font-weight: 500;
+            }
+        
+            .date-marker {
+                color: var(--active-color-text);
+                border-color: var(--active-color);
+            }
+        }
     }
 }
