@@ -142,13 +142,6 @@ createListButton.addEventListener('click', () => {
 
 
 
-//Обработка клика по checkbox
-
-tasks.forEach((task, index) => {
-    taskCheckbox[index].addEventListener('click', () => {
-        taskCheckbox[index].getElementsByTagName('i')[0].style.display = 'none'
-        taskCheckbox[index].getElementsByTagName('i')[1].style.display = 'block'
-        task.style.opacity = 0;
 
         setTimeout(() => {
             task.style.display = 'none'
