@@ -1,4 +1,4 @@
-import { dropdownPriority, dropdownDate } from "./UI/TaskSettings/TaskSettings";
+import { dropdownPriority, dropdownDate } from "../UI/TaskSettings/TaskSettings";
 
 class Task {
     constructor(title = 'New Task', date = '', priority = 'None') {

@@ -1,7 +1,7 @@
 import * as createNewList from "./UI/createNewList/createNewList";
 import { updateSidebar } from ".";
-import { List } from "./ListObj";
-import { Task } from "./TaskObj";
+import { List } from "./obj/ListObj";
+import { Task } from "./obj/TaskObj";
 
 let listStorage = []
 localStorage.getItem('listStorage') !== null ? listStorage = JSON.parse(localStorage.getItem('listStorage')) : listStorage = [];
@@ -48,7 +48,9 @@ const createList = (listTitle, taskTitles) => {
 
 
 function showSidebarElements() {
-    const showStorage = JSON.parse(localStorage.getItem('listStorage'))
+    let showStorage = JSON.parse(localStorage.getItem('listStorage'));
+    showStorage !== null ? showStorage = JSON.parse(localStorage.getItem('listStorage')) :  showStorage = []
+
     if (showStorage.length !== 0) {
         showStorage.forEach(storedList => {
             const listTitle = storedList._title;
@@ -63,7 +65,7 @@ function showSidebarElements() {
 showSidebarElements()
 
 
-//Добвление элементов в sidebar
+//Добавление элементов в sidebar
 function addSidebarElements(newList) {
 
     const storedList = newList;
@@ -117,3 +119,4 @@ createNewList.createListButton.addEventListener('click', () => {
     updateSidebar();
 });
 
+export { sidePanel, listStorage }

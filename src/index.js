@@ -2,12 +2,12 @@ import './styles/style.scss';
 import values from './json/values.json'
 
 import { menuOptions as initialMenuOptions, menu } from './UI/panelMenuList/panelMenuList.js';
-//import {projectTitles, tasks} from './listStorageChoise.js';
 import { taskSotingPannel, taskSotingElements } from "./UI/sortingMethods/sortingMethods.js"
 import { popupMenu, dropdownPriority, dropdownContent, dropdownElements, dropdownDate, taskCheckbox, tasks, settingsSubmit } from './UI/TaskSettings/TaskSettings.js';
 import * as createNewList from './UI/createNewList/createNewList.js';
 import { addTaskButton, doneTaskButton, addTaskElement } from './UI/inputNewTask/inputNewTask.js'
 import * as listStorageChoise from './Sidebar.js';
+import * as MainBoard from './MainBoard.js'
 
 
 let menuOptions = initialMenuOptions;
@@ -34,29 +34,31 @@ document.addEventListener("click", function(event) {
 });
 
 
-//Выделение выбранного списка/задания
+
+let activeElement = null;
+let activeIndex = -1;
 
 const projectTitles = document.querySelectorAll('.project-title');
 
 // Функция для обновления обработчиков событий в sidebar
 function updateSidebar() {
     const projectTitles = document.querySelectorAll('.project-title');
-    projectTitles.forEach(projectTitle => {
-        const tasks = projectTitle.nextElementSibling.querySelectorAll('.task-in-list');
-        
+    projectTitles.forEach((projectTitle, index) => {
         // Удаляем старые обработчики событий, если они есть
         projectTitle.removeEventListener('click', handleProjectTitleClick);
         
         // Обработчик для projectTitle
-        projectTitle.addEventListener('click', handleProjectTitleClick);
+        projectTitle.addEventListener('click', (event) => handleProjectTitleClick(event, index));
     });
 
     menuOptions = document.querySelectorAll(".menu-list-options");
     updateMenuOptions();
+
+    return activeIndex;
 }
 
 // Обработчик событий для projectTitle
-function handleProjectTitleClick(event) {
+function handleProjectTitleClick(event, index) {
     const projectTitles = document.querySelectorAll('.project-title');
     
     // Снять класс 'active' со всех projectTitles
@@ -64,16 +66,23 @@ function handleProjectTitleClick(event) {
 
     // Добавить класс 'active' на кликнутый projectTitle
     event.currentTarget.classList.add('active');
+
+    // Обновить глобальные переменные activeElement и activeIndex
+    activeElement = event.currentTarget;
+    activeIndex = index;
+
+    //Вызов функции для обновления Mainboard
+    MainBoard.updateMainBoard()
+
+    return activeIndex;
 }
 
 updateSidebar()
 
 
-
-    //Переключение active в окне быстрой сортировки 
+//Переключение active в окне быстрой сортировки 
 
 taskSotingElements.forEach((sortingElement) => {
-
 
     sortingElement.addEventListener('click', (event) => {
         event.stopPropagation()
@@ -88,18 +97,25 @@ taskSotingElements.forEach((sortingElement) => {
 
 
 // Event listener to task popup menu
-const ellipsisIcon = document.querySelectorAll('.task-board.task-list-wrapper.task-title .fa-ellipsis');
-ellipsisIcon.forEach(icon => {
-    icon.addEventListener('click', (event) => {
-        const rect2 = event.target.getBoundingClientRect();
-        popupMenu.style.top = `${rect2.top}px`;
-        popupMenu.style.left = `${rect2.left - 180}px`;
-        popupMenu.style.display = 'block';
+let ellipsisIcons = document.querySelectorAll('.task-board.task-list-wrapper.task-title .fa-ellipsis');
 
-        dropdownPriority.textContent = 'None';
-        dropdownDate.value = '';
+function showPopup() {
+    ellipsisIcons = document.querySelectorAll('.task-board.task-list-wrapper.task-title .fa-ellipsis');
+
+    ellipsisIcons.forEach(icon => {
+        icon.addEventListener('click', (event) => {
+            const rect2 = event.target.getBoundingClientRect();
+            popupMenu.style.top = `${rect2.top}px`;
+            popupMenu.style.left = `${rect2.left - 180}px`;
+            popupMenu.style.display = 'block';
+    
+            dropdownPriority.textContent = 'None';
+            dropdownDate.value = '';
+        });
     });
-});
+}
+
+showPopup();
 
 // Close the popup when clicking outside
 document.addEventListener('click', (event) => {
@@ -122,5 +138,5 @@ dropdownDate.addEventListener('change', (event) => {
 })
 
 
-export { updateSidebar, menuOptions }
+export { updateSidebar, menuOptions, ellipsisIcons, showPopup, activeIndex }
 
