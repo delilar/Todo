@@ -1,6 +1,7 @@
 import * as sidebarVariables from "./Sidebar.js";
 import * as inputNewTask from "./UI/inputNewTask/inputNewTask.js";
-import { updateSidebar, menuOptions, ellipsisIcons, showPopup, activeIndex } from ".";
+import { updateSidebar, menuOptions, ellipsisIcons, showPopup, activeListIndex } from ".";
+import { showMarkers } from "./Markers.js";
 
 const mainBoard = document.querySelector('.task-board__inner')
 let mainBoardTasksList = document.querySelector('.task-board.task-list')
@@ -20,7 +21,8 @@ const drawListTitle = (insertTitle) => {
     return title;
 }
 
-const drawTask = (insertTitle) => {
+const drawTask = (insertTask) => {
+    console.log(insertTask)
     const task = document.createElement('div');
     task.classList.add('task-board', 'task-list-wrapper', 'task-title');
 
@@ -29,28 +31,20 @@ const drawTask = (insertTitle) => {
                             <i class="fa-regular fa-circle"></i>
                             <i class="fa-solid fa-check"></i>
                         </div>
-                        <h3>${insertTitle._title}</h3>
-                    </div>
+                        <h3>${insertTask._title}</h3>
+                    </div>`;
 
-                    <div class="task-board task-list__markers-wrapper">
-                        <div class="date-marker">
-                            <p>12.06.2024</p>
-                        </div>
-                        <div class="priority-marker">
-                            <p>High</p>
-                        </div>
-                    </div>
+    // Добавляем маркеры к задаче
+    task.appendChild(showMarkers(insertTask));
 
-                    <i class="fa-solid fa-ellipsis"></i>`;
+    task.innerHTML += `<i class="fa-solid fa-ellipsis"></i>`;
 
     return task; 
 }
 
 function updateMainBoard() {
-
     sidebarVariables.listStorage.forEach((listElement, listIndex) => {
-        if (listIndex === activeIndex) {
-            console.log(listElement)
+        if (listIndex === activeListIndex) {
 
             listTitle.innerHTML = ''
             listTitle.appendChild(drawListTitle(listElement._title)) 
@@ -59,17 +53,15 @@ function updateMainBoard() {
                                         <p>Task</p>
                                     </div>`;
 
-
             mainBoardTasksList.innerHTML = ''
             listElement._tasks.forEach((task) => {
                 mainBoardTasksList.appendChild(drawTask(task))
             })
-
         }
     })
 
     showPopup()
+    inputNewTask.addTaskInMainboardButton()
 }
 
-
-export { updateMainBoard }
+export { updateMainBoard, drawTask }

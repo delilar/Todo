@@ -5,7 +5,7 @@ import { menuOptions as initialMenuOptions, menu } from './UI/panelMenuList/pane
 import { taskSotingPannel, taskSotingElements } from "./UI/sortingMethods/sortingMethods.js"
 import { popupMenu, dropdownPriority, dropdownContent, dropdownElements, dropdownDate, taskCheckbox, tasks, settingsSubmit } from './UI/TaskSettings/TaskSettings.js';
 import * as createNewList from './UI/createNewList/createNewList.js';
-import { addTaskButton, doneTaskButton, addTaskElement } from './UI/inputNewTask/inputNewTask.js'
+import { addTaskButton, doneTaskButton, addTaskElement, addTaskInMainboardButton } from './UI/inputNewTask/inputNewTask.js'
 import * as listStorageChoise from './Sidebar.js';
 import * as MainBoard from './MainBoard.js'
 
@@ -36,7 +36,7 @@ document.addEventListener("click", function(event) {
 
 
 let activeElement = null;
-let activeIndex = -1;
+let activeListIndex = -1;
 
 const projectTitles = document.querySelectorAll('.project-title');
 
@@ -54,7 +54,7 @@ function updateSidebar() {
     menuOptions = document.querySelectorAll(".menu-list-options");
     updateMenuOptions();
 
-    return activeIndex;
+    return activeListIndex;
 }
 
 // Обработчик событий для projectTitle
@@ -67,14 +67,14 @@ function handleProjectTitleClick(event, index) {
     // Добавить класс 'active' на кликнутый projectTitle
     event.currentTarget.classList.add('active');
 
-    // Обновить глобальные переменные activeElement и activeIndex
+    // Обновить глобальные переменные activeElement и activeListIndex
     activeElement = event.currentTarget;
-    activeIndex = index;
+    activeListIndex = index;
 
     //Вызов функции для обновления Mainboard
     MainBoard.updateMainBoard()
 
-    return activeIndex;
+    return activeListIndex;
 }
 
 updateSidebar()
@@ -98,11 +98,12 @@ taskSotingElements.forEach((sortingElement) => {
 
 // Event listener to task popup menu
 let ellipsisIcons = document.querySelectorAll('.task-board.task-list-wrapper.task-title .fa-ellipsis');
+let activePopupIndex = -1;
 
 function showPopup() {
     ellipsisIcons = document.querySelectorAll('.task-board.task-list-wrapper.task-title .fa-ellipsis');
 
-    ellipsisIcons.forEach(icon => {
+    ellipsisIcons.forEach( (icon, iconIndex) => {
         icon.addEventListener('click', (event) => {
             const rect2 = event.target.getBoundingClientRect();
             popupMenu.style.top = `${rect2.top}px`;
@@ -111,6 +112,8 @@ function showPopup() {
     
             dropdownPriority.textContent = 'None';
             dropdownDate.value = '';
+
+            activePopupIndex = iconIndex;
         });
     });
 }
@@ -138,5 +141,5 @@ dropdownDate.addEventListener('change', (event) => {
 })
 
 
-export { updateSidebar, menuOptions, ellipsisIcons, showPopup, activeIndex }
+export { updateSidebar, menuOptions, ellipsisIcons, showPopup, activeListIndex, activePopupIndex }
 

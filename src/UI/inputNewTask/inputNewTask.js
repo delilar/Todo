@@ -15,20 +15,30 @@ taskInputBlock.innerHTML = `
 `;
 
 
-const addTaskButton = document.querySelector('.add-task-button');
+let addTaskButton = document.querySelector('.add-task-button');
 const taskBoardInner = document.querySelector('.task-board__inner');
 
 
 taskBoardInner.appendChild(taskInputBlock)
 const addNewTask = document.querySelector('.task-board.task-list-wrapper.task-title.add-task')
 
-addTaskButton.addEventListener('click', () => {
-    addNewTask.style.display = 'flex';
-    const taskInput = document.querySelector('#task-input');
-    taskInput.focus();
-    taskInputBlock.style.opacity = '1';
-})
+function addTaskInMainboardButton() {
+    addTaskButton = document.querySelector('.add-task-button');
+    addTaskButton.addEventListener('click', () => {
+        console.log(1)
+        addNewTask.style.display = 'flex';
+        const taskInput = document.querySelector('#task-input');
+        taskInput.focus();
+        taskInputBlock.style.opacity = '1';
+    
+        const doneTaskButton = document.querySelector('.task-add-done-button');
+        doneTaskButton.addEventListener('click', () => {
+            
+        })
+    })
+}
 
+addTaskInMainboardButton()
 
 const doneTaskButton = document.querySelector('.task-add-done-button');
 
@@ -37,4 +47,4 @@ doneTaskButton.addEventListener('click', () => {
     setTimeout(() => {addNewTask.style.display = 'none'}, 300);
 });
 
-export { addTaskButton, addNewTask, doneTaskButton }
+export { addTaskButton, addNewTask, doneTaskButton, addTaskInMainboardButton }

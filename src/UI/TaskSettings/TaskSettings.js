@@ -35,8 +35,8 @@ dropdownWrapper.innerHTML += dropDownMenu;
 
 const dropdownContent = document.querySelector('.dropdown-menu__content');
 const dropdownElements = Array.from(dropdownContent.getElementsByTagName('a'));
-const dropdownPriority = document.querySelector('.dropdown-menu__button');
 
+const dropdownPriority = document.querySelector('.dropdown-menu__button');
 const dropdownDate = document.getElementById('dropdown-date');
 
 //Task check
@@ -58,21 +58,7 @@ tasks.forEach((task, index) => {
 })
 
 
-settingsSubmit.addEventListener('click', () => {
-    console.log(dropdownDate.value, dropdownPriority.textContent)
-})
-
-
-// Task markers
-
 const addTaskButton = document.querySelector('.add-task-button');
-
-addTaskButton.addEventListener('click', () => {
-    const doneTaskButton = document.querySelector('.task-add-done-button');
-    doneTaskButton.addEventListener('click', () => {
-        tasks = document.querySelectorAll('.task-board.task-list-wrapper.task-title')
-    })
-})
 
 
 
