@@ -2,6 +2,7 @@ import * as sidebarVariables from "./Sidebar.js";
 import * as inputNewTask from "./UI/inputNewTask/inputNewTask.js";
 import { updateSidebar, menuOptions, ellipsisIcons, showPopup, activeListIndex } from ".";
 import { showMarkers } from "./Markers.js";
+import { checkTasks } from "./UI/TaskSettings/TaskSettings.js";
 
 const mainBoard = document.querySelector('.task-board__inner')
 let mainBoardTasksList = document.querySelector('.task-board.task-list')
@@ -22,7 +23,6 @@ const drawListTitle = (insertTitle) => {
 }
 
 const drawTask = (insertTask) => {
-    console.log(insertTask)
     const task = document.createElement('div');
     task.classList.add('task-board', 'task-list-wrapper', 'task-title');
 
@@ -60,8 +60,9 @@ function updateMainBoard() {
         }
     })
 
-    showPopup()
-    inputNewTask.addTaskInMainboardButton()
+    showPopup();
+    inputNewTask.addTaskInMainboardButton();
+    checkTasks();
 }
 
 export { updateMainBoard, drawTask }

@@ -1,5 +1,9 @@
-import './TaskSettings.scss'
-import "../choosePriority/choosePriority.scss"
+import './TaskSettings.scss';
+import "../choosePriority/choosePriority.scss";
+
+import { activeListIndex, updateSidebar } from '../..';
+import { listStorage, showSidebarElements } from '../../Sidebar';
+import { updateMainBoard } from '../../MainBoard';
 
 // Create the popup menu
 const taskSettingsPopup = `<div class="add-list__popup">
@@ -29,7 +33,6 @@ const dropDownMenu = `<div class="dropdown-menu">
                             </div>
                         </div>`;
 
-
 const dropdownWrapper = document.querySelector('.dropdown-wrapper');
 dropdownWrapper.innerHTML += dropDownMenu;
 
@@ -40,31 +43,35 @@ const dropdownPriority = document.querySelector('.dropdown-menu__button');
 const dropdownDate = document.getElementById('dropdown-date');
 
 //Task check
-const taskCheckbox = document.querySelectorAll('.task-board.task-list__checkbox');
+let taskCheckbox = document.querySelectorAll('.task-board.task-list__checkbox');
 let tasks = document.querySelectorAll('.task-board.task-list-wrapper.task-title');
 
 const settingsSubmit = document.getElementById('task-settings-submit');
 
-tasks.forEach((task, index) => {
-    taskCheckbox[index].addEventListener('click', () => {
-        taskCheckbox[index].getElementsByTagName('i')[0].style.display = 'none'
-        taskCheckbox[index].getElementsByTagName('i')[1].style.display = 'block'
-        task.style.opacity = 0;
+function checkTasks() {
+    tasks = Array.from(document.querySelectorAll('.task-board.task-list-wrapper.task-title')); 
+    tasks.pop(); // Убираем input элемент 
+    taskCheckbox = document.querySelectorAll('.task-board.task-list__checkbox');
 
-        setTimeout(() => {
-            task.style.display = 'none'
-        }, '300')
-    })
-})
+    tasks.forEach((task, index) => {
+        taskCheckbox[index].addEventListener('click', () => {
+            taskCheckbox[index].getElementsByTagName('i')[0].style.display = 'none';
+            taskCheckbox[index].getElementsByTagName('i')[1].style.display = 'block';
+            task.style.opacity = 0;
+    
+            setTimeout(() => {
+                task.style.display = 'none';
+            }, '300');
 
+            listStorage[activeListIndex]._tasks.splice(index, 1); // Удаление task из списка при клике на checkbox
+            localStorage.setItem('listStorage', JSON.stringify(listStorage));
+
+            showSidebarElements();
+            updateMainBoard();
+        });
+    });
+}
 
 const addTaskButton = document.querySelector('.add-task-button');
 
-
-
-
-export { popupMenu, dropdownPriority, dropdownContent, dropdownElements, dropdownDate, taskCheckbox, tasks, settingsSubmit }
-
-
-
-
+export { popupMenu, dropdownPriority, dropdownContent, dropdownElements, dropdownDate, taskCheckbox, tasks, checkTasks, settingsSubmit };

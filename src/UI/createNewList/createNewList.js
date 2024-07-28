@@ -1,6 +1,6 @@
 import './createNewList.scss'
 
-const addNewList = `<div class="add-project-title">
+const addNewListTemplate = `<div class="add-project-title">
     <input type="text" autocomplete="off" name="project-title" id="add-project-title" placeholder="Enter the list name">
 </div>
 <div class="tasks">
@@ -15,10 +15,18 @@ const addNewList = `<div class="add-project-title">
         <i class="fa-solid fa-check"></i>
         <p>Done</p>
     </span>
-</div>`
+</div>`;
 
-const listStorageAddList = document.querySelector('.task-panel__list-storage.add-list');
-listStorageAddList.innerHTML = addNewList;
+const createAddNewListElement = () => {
+    const wrapper = document.createElement('div');
+    wrapper.classList.add('task-panel__list-storage', 'add-list')
+    wrapper.innerHTML = addNewListTemplate;
+    return wrapper;
+}
+
+const showPanel = document.querySelector('.task-panel__list-storage-inner');
+
+const listStorageAddList = createAddNewListElement();
 
 const newListButton = document.querySelector('.add-list-button');
 const addListPanel = document.querySelector('.task-panel__list-storage.add-list');
@@ -33,24 +41,26 @@ const createTaskInput = () => {
     return input;
 }
 
-const addTaskButton = addListPanel.querySelector('.dropdown-add-task');
-const addListName = addListPanel.querySelector('#add-project-title');
-let addTaskName = Array.from(addListPanel.querySelectorAll('#task-in-list'));
+const addTaskButton = listStorageAddList.querySelector('.dropdown-add-task');
+const addListName = listStorageAddList.querySelector('#add-project-title');
+let addTaskName = Array.from(listStorageAddList.querySelectorAll('#task-in-list'));
 
-const createListButton = addListPanel.querySelector('.dropdown-create-list');
+const createListButton = listStorageAddList.querySelector('.dropdown-create-list');
 
 newListButton.addEventListener('click', () => {
+    showPanel.appendChild(listStorageAddList);
     listStorageAddList.style.display = 'block';
-    const tasksDiv = addListPanel.querySelector('.tasks');
+    console.log(showPanel)
+    const tasksDiv = listStorageAddList.querySelector('.tasks');
     tasksDiv.innerHTML = '';
     tasksDiv.appendChild(createTaskInput());
 
-    addTaskName = Array.from(addListPanel.querySelectorAll('#task-in-list'));
+    addTaskName = Array.from(listStorageAddList.querySelectorAll('#task-in-list'));
 })
 
 addTaskButton.addEventListener('click', () => {
-    addListPanel.querySelector('.tasks').appendChild(createTaskInput());
-    addTaskName = Array.from(addListPanel.querySelectorAll('#task-in-list')); 
+    listStorageAddList.querySelector('.tasks').appendChild(createTaskInput());
+    addTaskName = Array.from(listStorageAddList.querySelectorAll('#task-in-list')); 
 })
 
 createListButton.addEventListener('click', () => {

@@ -1,26 +1,13 @@
 class Task {
-    constructor(title = 'New Task', date = '', priority = 'None') {
+    constructor(title = 'New Task', date = '', priority = 'None', priorityColor = '') {
         this._title = title;
         this._markers = {
             date: date,
             priority: priority,
-            priorityColor: this.setPriorityColor(priority) 
+            priorityColor: priorityColor
         };
     }
 
-    // Метод для установки цвета приоритета
-    setPriorityColor(priority) {
-        switch (priority) {
-            case 'Low':
-                return '#2feb55';
-            case 'Medium':
-                return '#eb9d2f';
-            case 'High':
-                return '#eb2f35';
-            default:
-                return '';
-        }
-    }
 
     // Геттеры
     get title() {
@@ -50,7 +37,6 @@ class Task {
 
     set priority(value) {
         this._markers.priority = value;
-        this._markers.priorityColor = this.setPriorityColor(value); // Обновите цвет при изменении приоритета
     }
 
     // Геттер для markers

@@ -48,6 +48,7 @@ const createList = (listTitle, taskTitles) => {
 
 
 function showSidebarElements() {
+    sidePanel.innerHTML = '';
     let showStorage = JSON.parse(localStorage.getItem('listStorage'));
     showStorage !== null ? showStorage = JSON.parse(localStorage.getItem('listStorage')) :  showStorage = []
 
@@ -119,4 +120,4 @@ createNewList.createListButton.addEventListener('click', () => {
     updateSidebar();
 });
 
-export { sidePanel, listStorage }
+export { sidePanel, listStorage, showSidebarElements }

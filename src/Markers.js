@@ -3,31 +3,41 @@ import * as taskSettings from './UI/TaskSettings/TaskSettings.js';
 import { activePopupIndex, activeListIndex } from ".";
 import { drawTask, updateMainBoard } from "./MainBoard.js";
 
-
-
 let tasksInLists = [];
 
 function getMarkers() {
-    sidebarVariables.listStorage.forEach( (tasks, tasksIndex) => {
+    sidebarVariables.listStorage.forEach((tasks, tasksIndex) => {
         if (activeListIndex === tasksIndex) {
             tasksInLists = tasks._tasks;
         }
-    })
+    });
+}
+
+function setPriorityColor(priority) {
+    switch (priority) {
+        case 'Low':
+            return '#2feb55';
+        case 'Medium':
+            return '#eb9d2f';
+        case 'High':
+            return '#eb2f35';
+        default:
+            return '';
+    }
 }
 
 taskSettings.settingsSubmit.addEventListener('click', () => {
-    getMarkers()
+    getMarkers();
 
     tasksInLists[activePopupIndex]._markers.date = taskSettings.dropdownDate.value;
     tasksInLists[activePopupIndex]._markers.priority = taskSettings.dropdownPriority.textContent;
+    tasksInLists[activePopupIndex]._markers.priorityColor = setPriorityColor(taskSettings.dropdownPriority.textContent);
 
     sidebarVariables.listStorage[activeListIndex]._tasks = tasksInLists;
     localStorage.setItem('listStorage', JSON.stringify(sidebarVariables.listStorage));
     
-    updateMainBoard()
-})
-
-
+    updateMainBoard();
+});
 
 function showMarkers(task) {
     const div = document.createElement('div');
@@ -52,4 +62,4 @@ function showMarkers(task) {
     return div;
 }
 
-export { showMarkers }
+export { showMarkers, getMarkers, tasksInLists, setPriorityColor };

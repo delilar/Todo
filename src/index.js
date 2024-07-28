@@ -3,11 +3,12 @@ import values from './json/values.json'
 
 import { menuOptions as initialMenuOptions, menu } from './UI/panelMenuList/panelMenuList.js';
 import { taskSotingPannel, taskSotingElements } from "./UI/sortingMethods/sortingMethods.js"
-import { popupMenu, dropdownPriority, dropdownContent, dropdownElements, dropdownDate, taskCheckbox, tasks, settingsSubmit } from './UI/TaskSettings/TaskSettings.js';
 import * as createNewList from './UI/createNewList/createNewList.js';
 import { addTaskButton, doneTaskButton, addTaskElement, addTaskInMainboardButton } from './UI/inputNewTask/inputNewTask.js'
-import * as listStorageChoise from './Sidebar.js';
+import * as sidebarVariables from './Sidebar.js';
 import * as MainBoard from './MainBoard.js'
+import * as Markers from './Markers.js'
+import { popupMenu, dropdownPriority, dropdownContent, dropdownElements, dropdownDate, taskCheckbox, tasks, checkTasks } from './UI/TaskSettings/TaskSettings.js';
 
 
 let menuOptions = initialMenuOptions;
@@ -100,6 +101,8 @@ taskSotingElements.forEach((sortingElement) => {
 let ellipsisIcons = document.querySelectorAll('.task-board.task-list-wrapper.task-title .fa-ellipsis');
 let activePopupIndex = -1;
 
+const settingsSubmit = document.getElementById('task-settings-submit');
+
 function showPopup() {
     ellipsisIcons = document.querySelectorAll('.task-board.task-list-wrapper.task-title .fa-ellipsis');
 
@@ -141,5 +144,5 @@ dropdownDate.addEventListener('change', (event) => {
 })
 
 
-export { updateSidebar, menuOptions, ellipsisIcons, showPopup, activeListIndex, activePopupIndex }
+export { updateSidebar, menuOptions, ellipsisIcons, showPopup, activeListIndex, activePopupIndex, }
 
